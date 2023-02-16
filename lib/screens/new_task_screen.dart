@@ -206,11 +206,13 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
               },
             ),
           ),
-          title: const Text(
-            "Add new thing",
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
+          title: const Center(
+            child: Text(
+              "Add new thing",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+              ),
             ),
           ),
           actions: [
