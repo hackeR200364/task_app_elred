@@ -215,7 +215,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
           ),
           actions: [
             Padding(
-              padding: EdgeInsets.only(right: 15),
+              padding: const EdgeInsets.only(right: 15),
               child: IconButton(
                 onPressed: (() {}),
                 icon: Icon(
@@ -269,7 +269,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                                   color: AppColors.white,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 7,
                               ),
                               Container(
@@ -707,7 +707,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                                 ),
                               ],
                               color: AppColors.sky,
-                              borderRadius: BorderRadius.circular(5),
+                              borderRadius: BorderRadius.circular(10),
                             ),
                             child: Center(
                               child:

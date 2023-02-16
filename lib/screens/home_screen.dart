@@ -94,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   ),
                 ],
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.add,
                 color: AppColors.white,
                 size: 40,
@@ -178,9 +178,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                           padding:
                                               const EdgeInsets.only(left: 20),
                                           child: IconButton(
-                                            onPressed: (() {
-                                              print("object");
-                                            }),
+                                            onPressed: (() {}),
                                             icon: const Icon(
                                               Icons.menu,
                                               color: AppColors.white,
@@ -188,6 +186,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                             ),
                                             splashRadius: 20,
                                           ),
+                                        ),
+                                        SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              30,
                                         ),
                                         Padding(
                                           padding:
@@ -199,10 +203,16 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                               overflow: TextOverflow.ellipsis,
                                               color: AppColors.white,
                                               fontSize: 25,
-                                              fontWeight: FontWeight.w500,
-                                              letterSpacing: 5,
+                                              fontWeight: FontWeight.bold,
+                                              letterSpacing: 7,
                                             ),
                                           ),
+                                        ),
+                                        SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              20,
                                         ),
                                         Padding(
                                           padding:
@@ -237,7 +247,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   );
                                 }),
                                 Container(
-                                  padding: EdgeInsets.only(
+                                  padding: const EdgeInsets.only(
                                     right: 15,
                                     left: 10,
                                     bottom: 15,
@@ -275,32 +285,23 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                       SizedBox(
                                         height:
                                             MediaQuery.of(context).size.height /
-                                                35,
+                                                15,
                                       ),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.end,
                                         children: [
                                           CircularPercentIndicator(
-                                            progressColor: ((percent * 100)
-                                                            .toInt() >=
-                                                        0 &&
-                                                    (percent * 100).toInt() <=
-                                                        15)
-                                                ? AppColors.red
-                                                : ((percent * 100).toInt() >
-                                                            15 &&
-                                                        (percent * 100)
-                                                                .toInt() <=
-                                                            30)
-                                                    ? AppColors.orange
-                                                    : ((percent * 100).toInt() >
-                                                                30 &&
-                                                            (percent * 100)
-                                                                    .toInt() <=
-                                                                45)
-                                                        ? AppColors.yellow
-                                                        : AppColors.green,
+                                            linearGradient: LinearGradient(
+                                              colors: [
+                                                AppColors.mainColor,
+                                                AppColors.sky!,
+                                              ],
+                                            ),
+                                            backgroundColor: AppColors.white
+                                                .withOpacity(0.3),
+                                            circularStrokeCap:
+                                                CircularStrokeCap.round,
                                             animation: true,
                                             radius: 15,
                                             lineWidth: 3,
@@ -309,6 +310,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                     0)
                                                 ? 0
                                                 : percent,
+                                          ),
+                                          const SizedBox(
+                                            width: 5,
                                           ),
                                           Text(
                                             " ${(percent * 100).toInt()}% done",
@@ -332,7 +336,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         height: 25,
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: Column(
                           children: [
                             Padding(
@@ -384,7 +388,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Consumer<TaskDetailsProvider>(builder:
@@ -401,7 +405,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               child: Center(
                                 child: Text(
                                   taskDetailsProvider.taskDone.toString(),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: AppColors.white,
                                     fontSize: 17,
                                   ),
@@ -825,7 +829,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       case "23":
         return "11";
       default:
-        print(time);
         return time;
     }
   }

@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: AppColors.backgroundColour,
+        backgroundColor: AppColors.newTaskScreenColour,
         body: Center(
           child: TextLiquidFill(
             loadDuration: const Duration(seconds: 4),
@@ -51,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
             boxHeight: MediaQuery.of(context).size.height,
             boxWidth: MediaQuery.of(context).size.width,
             waveColor: Colors.white,
-            boxBackgroundColor: AppColors.backgroundColour,
+            boxBackgroundColor: AppColors.newTaskScreenColour,
             text: 'TASKAPP',
             textStyle: const TextStyle(
               color: Colors.white,

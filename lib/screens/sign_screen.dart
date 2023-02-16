@@ -45,7 +45,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: AppColors.backgroundColour,
+        backgroundColor: AppColors.newTaskScreenColour,
         body: Padding(
           padding: const EdgeInsets.only(
             left: 15,
