@@ -717,7 +717,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                           ),
                           child: Container(
                             width: MediaQuery.of(context).size.width,
-                            height: 75,
+                            height: 60,
                             padding: const EdgeInsets.symmetric(
                               vertical: 20,
                             ),
@@ -730,7 +730,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                                 ),
                               ],
                               color: AppColors.sky,
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(3),
                             ),
                             child: Center(
                               child:
