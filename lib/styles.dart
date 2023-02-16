@@ -7,6 +7,7 @@ class AppColors {
   static const transparent = Colors.transparent;
   static Color blackLow = Colors.black;
   static Color? sky = Colors.blue;
+  static Color? skyLight = Colors.blue[200];
   static Color? red = Colors.red;
   static Color? green = Colors.green;
   static Color? lightGreen = Colors.lightGreenAccent;
@@ -15,7 +16,7 @@ class AppColors {
   static Color? lime = Colors.lime;
   static const mainColor = Color(0xFF1F1F39);
   static const mainColor2 = Color(0xFF3845AB);
-  static const newTaskScreenColour = Color(0xFF3f4f95);
+  static const newTaskScreenColour = Color(0xFF46539f);
   static const homePageScaffoldColour = Color(0xFFdd77a1);
   static const floatingButton = Colors.deepPurple;
   static const scrollPhysics = BouncingScrollPhysics();

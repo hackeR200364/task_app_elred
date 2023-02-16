@@ -8,13 +8,7 @@ class TaskDetailsProvider extends ChangeNotifier {
   int taskDone = 0;
   void taskDoneFunc() async {
     String email = await StorageServices.getUserEmail();
-    // bool isNewUser = await StorageServices.getIsNewUser();
-
     DocumentSnapshot userDoc = await users.doc(email).get();
-
-    // if (isNewUser) {
-    //   users.doc(email).set({Keys.taskDone: taskDone});
-    // }
     taskDone = userDoc[Keys.taskDone] ?? 0;
     notifyListeners();
   }
@@ -22,12 +16,7 @@ class TaskDetailsProvider extends ChangeNotifier {
   int taskCount = 0;
   void taskCountFunc() async {
     String email = await StorageServices.getUserEmail();
-
     DocumentSnapshot userDoc = await users.doc(email).get();
-
-    // if (isNewUser) {
-    //   users.doc(email).set({Keys.taskDone: taskDone});
-    // }
     taskCount = userDoc[Keys.taskCount] ?? 0;
     notifyListeners();
   }
@@ -35,12 +24,7 @@ class TaskDetailsProvider extends ChangeNotifier {
   int taskDelete = 0;
   void taskDeleteFunc() async {
     String email = await StorageServices.getUserEmail();
-
     DocumentSnapshot userDoc = await users.doc(email).get();
-
-    // if (isNewUser) {
-    //   users.doc(email).set({Keys.taskDone: taskDone});
-    // }
     taskDelete = userDoc[Keys.taskDelete] ?? 0;
     notifyListeners();
   }
@@ -48,12 +32,7 @@ class TaskDetailsProvider extends ChangeNotifier {
   int taskPending = 0;
   void taskPendingFunc() async {
     String email = await StorageServices.getUserEmail();
-
     DocumentSnapshot userDoc = await users.doc(email).get();
-
-    // if (isNewUser) {
-    //   users.doc(email).set({Keys.taskPending: taskPending});
-    // }
     taskPending = userDoc[Keys.taskPending] ?? 0;
     notifyListeners();
   }
@@ -61,12 +40,7 @@ class TaskDetailsProvider extends ChangeNotifier {
   int taskBusiness = 0;
   void taskBusinessFunc() async {
     String email = await StorageServices.getUserEmail();
-
     DocumentSnapshot userDoc = await users.doc(email).get();
-
-    // if (isNewUser) {
-    //   users.doc(email).set({Keys.taskBusiness: taskBusiness});
-    // }
     taskBusiness = userDoc[Keys.taskBusiness] ?? 0;
     notifyListeners();
   }
@@ -74,12 +48,7 @@ class TaskDetailsProvider extends ChangeNotifier {
   int taskPersonal = 0;
   void taskPersonalFunc() async {
     String email = await StorageServices.getUserEmail();
-
     DocumentSnapshot userDoc = await users.doc(email).get();
-
-    // if (isNewUser) {
-    //   users.doc(email).set({Keys.taskPersonal: taskPersonal});
-    // }
     taskPersonal = userDoc[Keys.taskPersonal] ?? 0;
     notifyListeners();
   }
@@ -87,9 +56,7 @@ class TaskDetailsProvider extends ChangeNotifier {
   int taskCountWithType = 0;
   void taskCountWithTypeFunc(String type) async {
     String email = await StorageServices.getUserEmail();
-
     DocumentSnapshot userDoc = await users.doc(email).get();
-
     String taskType =
         (type == "Personal") ? Keys.taskPersonal : Keys.taskBusiness;
     taskCountWithType = userDoc[taskType] ?? 0;

@@ -303,24 +303,43 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                     padding: const EdgeInsets.symmetric(
                       horizontal: 20,
                     ),
-                    child: TextFormField(
-                      controller: _taskNameController,
-                      textCapitalization: TextCapitalization.sentences,
-                      style: const TextStyle(
-                        color: AppColors.white,
-                      ),
-                      decoration: InputDecoration(
-                        suffixIconColor: AppColors.white,
-                        labelText: "Task Name",
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: AppColors.white.withOpacity(0.3),
+                    child: Consumer<AllAppProviders>(
+                      builder: (allAppContext, allAppProvider, allAppChild) {
+                        return TextFormField(
+                          onTap: (() {
+                            taskNameTapped = true;
+                            allAppProvider.taskNameTappedFunc(taskNameTapped);
+                          }),
+                          controller: _taskNameController,
+                          textCapitalization: TextCapitalization.sentences,
+                          style: const TextStyle(
+                            color: AppColors.white,
                           ),
-                        ),
-                        labelStyle: TextStyle(
-                          color: AppColors.white.withOpacity(0.6),
-                        ),
-                      ),
+                          decoration: InputDecoration(
+                            suffixIcon: (allAppProvider.taskNameTapped == true)
+                                ? IconButton(
+                                    splashRadius: 20,
+                                    onPressed: (() {
+                                      _taskNameController.clear();
+                                    }),
+                                    icon: Icon(
+                                      Icons.cancel,
+                                    ),
+                                  )
+                                : null,
+                            suffixIconColor: AppColors.white,
+                            labelText: "Task Name",
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: AppColors.white.withOpacity(0.3),
+                              ),
+                            ),
+                            labelStyle: TextStyle(
+                              color: AppColors.white.withOpacity(0.6),
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ),
                   Container(
@@ -677,6 +696,8 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
 
                                   allAppProvidersProvider
                                       .newTaskUploadLoadingFunc(false);
+                                  allAppProvidersProvider
+                                      .taskNameTappedFunc(false);
 
                                   Navigator.pop(context);
                                 } else {
@@ -715,7 +736,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                               child:
                                   (allAppProvidersProvider.newTaskUploadLoading)
                                       ? const CircularProgressIndicator(
-                                          color: AppColors.backgroundColour,
+                                          color: AppColors.white,
                                         )
                                       : const Text(
                                           "ADD YOUR TASK",
