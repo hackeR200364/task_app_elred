@@ -148,9 +148,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             taskDetailsProvider.taskPendingFunc();
                             taskDetailsProvider.taskBusinessFunc();
                             taskDetailsProvider.taskPersonalFunc();
-                            if (taskDetailsProvider.taskCount != 0) {
+                            if (taskDetailsProvider.taskCount != 0 &&
+                                taskDetailsProvider.taskDone != 0) {
                               percent = (taskDetailsProvider.taskDone /
-                                  taskDetailsProvider.taskCount);
+                                  (taskDetailsProvider.taskCount -
+                                      taskDetailsProvider.taskDelete));
+                            } else {
+                              percent = 0.0;
                             }
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -176,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsets.only(left: 20),
+                                              const EdgeInsets.only(left: 10),
                                           child: IconButton(
                                             onPressed: (() {}),
                                             icon: const Icon(
@@ -195,15 +199,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsets.only(left: 25),
+                                              const EdgeInsets.only(left: 15),
                                           child: Text(
                                             userDetailsProvider.userName!
                                                 .replaceAll(RegExp(" "), "\n"),
                                             style: const TextStyle(
                                               overflow: TextOverflow.ellipsis,
                                               color: AppColors.white,
-                                              fontSize: 25,
-                                              fontWeight: FontWeight.bold,
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.w400,
                                               letterSpacing: 7,
                                             ),
                                           ),
@@ -216,7 +220,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsets.only(left: 25),
+                                              const EdgeInsets.only(left: 15),
                                           child: Text(
                                             "${DateFormat.MMMM().format(date)[0]}${DateFormat.MMMM().format(date)[1]}${DateFormat.MMMM().format(date)[2]} ${date.day}, ${date.year}",
                                             style: TextStyle(
@@ -235,10 +239,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                   .size
                                                   .width /
                                               1.72,
-                                          height: 5,
+                                          height: 3,
                                           decoration: BoxDecoration(
                                               gradient: LinearGradient(colors: [
-                                            AppColors.mainColor,
+                                            AppColors.newTaskScreenColour,
                                             AppColors.sky!,
                                           ])),
                                         )
@@ -292,24 +296,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                             MainAxisAlignment.end,
                                         children: [
                                           CircularPercentIndicator(
-                                            linearGradient: LinearGradient(
-                                              colors: [
-                                                AppColors.mainColor,
-                                                AppColors.sky!,
-                                              ],
-                                            ),
                                             backgroundColor: AppColors.white
                                                 .withOpacity(0.3),
                                             circularStrokeCap:
                                                 CircularStrokeCap.round,
                                             animation: true,
                                             radius: 15,
-                                            lineWidth: 3,
-                                            percent: (taskDetailsProvider
-                                                        .taskCount ==
-                                                    0)
-                                                ? 0
-                                                : percent,
+                                            lineWidth: 2.5,
+                                            percent: percent,
+                                            progressColor: AppColors.skyLight,
                                           ),
                                           const SizedBox(
                                             width: 5,
@@ -841,7 +836,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         .collection("users")
         .doc(firestoreEmail)
         .collection("tasks")
-        .orderBy(Keys.notificationID, descending: true)
+        .where(Keys.taskStatus, isNotEqualTo: "Deleted")
+        .orderBy(Keys.taskStatus, descending: true)
         .snapshots();
 
     return Padding(
@@ -857,7 +853,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
               child: CircularProgressIndicator(
-                color: AppColors.backgroundColour,
+                color: AppColors.newTaskScreenColour,
               ),
             );
           }
@@ -1196,7 +1192,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             ),
                             padding: const EdgeInsets.symmetric(
                               horizontal: 10,
-                              vertical: 15,
+                              vertical: 5,
                             ),
                             decoration: const BoxDecoration(
                               color: AppColors.white,
@@ -1304,7 +1300,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     return Container(
                       margin: const EdgeInsets.symmetric(
                         horizontal: 10,
-                        vertical: 10,
                       ),
                       height: 2,
                       color: AppColors.grey.withOpacity(0.1),
