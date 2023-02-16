@@ -717,7 +717,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                           ),
                           child: Container(
                             width: MediaQuery.of(context).size.width,
-                            height: 60,
+                            height: 75,
                             padding: const EdgeInsets.symmetric(
                               vertical: 20,
                             ),
