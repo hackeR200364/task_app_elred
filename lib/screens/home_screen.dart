@@ -72,32 +72,38 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         value: SystemUiOverlayStyle.dark,
         child: Scaffold(
           backgroundColor: AppColors.white,
-          floatingActionButton: InkWell(
-            onTap: (() {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => NewTaskScreen(),
-                ),
-              );
-            }),
-            child: Container(
-              width: 55,
-              height: 55,
-              decoration: BoxDecoration(
-                color: AppColors.sky,
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 20,
-                    color: AppColors.sky!.withOpacity(0.7),
+          floatingActionButton: Padding(
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).size.height / 15,
+              right: 15,
+            ),
+            child: InkWell(
+              onTap: (() {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NewTaskScreen(),
                   ),
-                ],
-              ),
-              child: const Icon(
-                Icons.add,
-                color: AppColors.white,
-                size: 40,
+                );
+              }),
+              child: Container(
+                width: 55,
+                height: 55,
+                decoration: BoxDecoration(
+                  color: AppColors.sky,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 20,
+                      color: AppColors.sky!.withOpacity(0.7),
+                    ),
+                  ],
+                ),
+                child: const Icon(
+                  Icons.add,
+                  color: AppColors.white,
+                  size: 40,
+                ),
               ),
             ),
           ),
@@ -351,7 +357,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               ),
                             ),
                             SizedBox(
-                              height: MediaQuery.of(context).size.height / 1.9,
+                              height: MediaQuery.of(context).size.height / 2.2,
                               width: MediaQuery.of(context).size.width,
                               child: Consumer<AllAppProviders>(
                                 builder: (allAppProvidersCtx,
@@ -878,7 +884,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               ),
               SizedBox(
                 // color: AppColors.sky,
-                height: MediaQuery.of(context).size.height / 2.1,
+                height: MediaQuery.of(context).size.height / 2.3,
                 width: MediaQuery.of(context).size.width,
                 child: ListView.separated(
                   physics: AppColors.scrollPhysics,
